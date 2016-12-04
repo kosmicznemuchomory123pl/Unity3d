@@ -18,7 +18,7 @@ public class PlayerCarMovement : MonoBehaviour {
     {
         //.x oznacza ze dzialamy tylko w poziomie. "Horizontal" wbudownae w unity.
         carPosition.x += Input.GetAxis("Horizontal") * carHorizontalSpeed * Time.deltaTime;
-
+        //Clamp jest to funkcja ktora trzyma nasz samochod w danych przedzialach,
         carPosition.x = Mathf.Clamp(carPosition.x, -2.41f, 2.41f);
         //do naszego objektu gry, do jego pozycji przypisujemy pozycje carPosition
         this.gameObject.transform.position = carPosition;
