@@ -8,10 +8,16 @@ public class PlayerCarMovement : MonoBehaviour {
     //pozycja naszego samochodu
     private Vector3 carPosition;
 
+    //moksymalne zycie pojazdu
+    public float maxDurability = 100f;
+    public float durability;
+
 
     void Start()
     {
         carPosition = this.gameObject.transform.position;
+
+        durability = maxDurability;
     }
 
     void Update()
