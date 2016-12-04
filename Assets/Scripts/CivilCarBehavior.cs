@@ -11,7 +11,7 @@ public class CivilCarBehavior : MonoBehaviour
 
     void Update()
     {
-        //ten objekt do ktorego jest przypisany skrypt/Translate - zmienia polozenie
+        //ten objekt do ktorego jest przypisany skrypt/Translate - zmienia polozenie // te mnozenie mnozy kazdy x,y,z wektora
         this.gameObject.transform.Translate(new Vector3(0, direction, 0) * civilCarSpeed * Time.deltaTime);
 
     }
