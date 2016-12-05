@@ -43,7 +43,7 @@ public class CivilCarSpawner : MonoBehaviour
         {
             //funkcja Instantiate tworzy objekty//katy Eulera, 180 stopni obraca obrazek civil cara
             GameObject car = (GameObject)Instantiate(civilCar, new Vector3(lanesArray[lane], 6f, 0), Quaternion.Euler(new Vector3(0, 0, 180)));
-
+            //jesli nie zmienimy direction pojazd pojedzie do gory
             car.GetComponent<CivilCarBehavior>().direction = 1;
             car.GetComponent<CivilCarBehavior>().civilCarSpeed = 12f;
         }

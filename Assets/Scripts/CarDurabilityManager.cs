@@ -30,19 +30,22 @@ public class CarDurabilityManager : MonoBehaviour
                 //corutyny wywoluja sie i pracuja niezaleznie //nie mozemy zatrzymac czasu w funkcji update
                 StartCoroutine("SpawnaCar");
             }
-            //nie mozemy dzieki bonusom zwiekszyc wytrzymalosci wiekszej niz 100
-            else if(playerCar.GetComponent<PlayerCarMovement>().durability > playerCar.GetComponent<PlayerCarMovement>().maxDurability)
-            {
-                playerCar.GetComponent<PlayerCarMovement>().durability = playerCar.GetComponent<PlayerCarMovement>().maxDurability;
-            }
+            
+        }
+        //nie mozemy dzieki bonusom zwiekszyc wytrzymalosci wiekszej niz 100
+        else if (playerCar.GetComponent<PlayerCarMovement>().durability > playerCar.GetComponent<PlayerCarMovement>().maxDurability)
+        {
+
+            playerCar.GetComponent<PlayerCarMovement>().durability = playerCar.GetComponent<PlayerCarMovement>().maxDurability;
         }
         durabilityText.text = "WYTRZYMALOSC: " + playerCar.GetComponent<PlayerCarMovement>().durability + "/" + playerCar.GetComponent<PlayerCarMovement>().maxDurability;
     }
 
-    //spawnowanie objektu i dawanie mu 3 sekund niezniszczalnosci
+    //Dzieki IEnumeratorowi mozemy zatrzymac czas na 3 sekundy, tylko tutaj ta funkcja dziala
+    //spawnowanie obiektu i dawanie mu 3 sekund niezniszczalnosci
     IEnumerator SpawnaCar()
     {
-
+        //Instantiate tworzy objekty
         playerCar = (GameObject)Instantiate(playerCarPrefab, spawnPoint.transform.position, Quaternion.identity);
         playerCar.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
         playerCar.GetComponent<BoxCollider2D>().isTrigger = true;

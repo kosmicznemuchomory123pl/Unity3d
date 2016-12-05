@@ -10,11 +10,6 @@ public class RoadInfiniteScrolling : MonoBehaviour
     //offset ktory nalozylismy na teksture objektu 3 wymiarowego
     private Vector2 offset;
 
-	// Use this for initialization
-	void Start ()
-    {
-	
-	}
 	
 	// Update is called once per frame
 	void Update ()
