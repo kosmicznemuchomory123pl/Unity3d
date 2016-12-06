@@ -40,7 +40,7 @@ public class Bonuses : MonoBehaviour
     void OnTriggerEnter2D(Collider2D obj)
     {
         //objekt ktory w nas wjechal czy rowna sie Player
-        if(obj.gameObject.tag =="Player")
+        if(obj.gameObject.tag =="Player" || obj.gameObject.tag == "Shield")
         {
             if(isDurability == true)
             {
