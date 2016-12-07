@@ -11,7 +11,9 @@ Karol9129@gmail.com
 Wcielamy się w złodzieja uciekającego samochodem, po dokonaniu napadu na bank.
 
 # 1. Sterowanie:
+
 Ruch w prawo - prawa strzałka.
+
 Ruch w lewo - lewa strzałka.
 
 # 2. Główny cel:
