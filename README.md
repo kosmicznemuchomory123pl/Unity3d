@@ -1,4 +1,5 @@
-# Unity 5.4 2f2
+# Wymagania :
+Oprogramowanie obsługujące projekty Unity 5.4 2f2
 
 W razie problemów, zauważenia błędów które można naprawić kontakt:
 
