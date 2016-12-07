@@ -33,16 +33,19 @@ public class Bonuses : MonoBehaviour
     {
         //zmienia polozenie objektu, porusza sie jak samochod cywilow
         this.gameObject.transform.Translate(new Vector3(0, -1, 0) * bonusSpeed * Time.deltaTime);
-
+        if (transform.position.y < -14f && isActivated == false)
+        {
+            Destroy(gameObject);
+        }
 
 	}
 
     void OnTriggerEnter2D(Collider2D obj)
     {
         //objekt ktory w nas wjechal czy rowna sie Player
-        if(obj.gameObject.tag =="Player" || obj.gameObject.tag == "Shield")
+        if (obj.gameObject.tag == "Player" || obj.gameObject.tag == "Shield")
         {
-            if(isDurability == true)
+            if (isDurability == true)
             {
                 obj.gameObject.GetComponent<PlayerCarMovement>().durability += repairPoints;
                 Destroy(this.gameObject);
@@ -68,13 +71,16 @@ public class Bonuses : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 isActivated = true;
                 StartCoroutine("SpeedBoostActivated");
+                
 
             }
-            else if (obj.gameObject.tag == "EndOfTheRoad" && isActivated == false)
-            {
-                Destroy(this.gameObject);
-            }
         }
+        //nie chcialo dzialac wiec usunelismy obiekt w funkcji update
+        /*else if (obj.gameObject.tag == "EndOfTheRoad" && isActivated == false)
+        {
+            Destroy(this.gameObject);
+        }*/
+
     }
 
     IEnumerator SpeedBoostActivated()
@@ -87,6 +93,7 @@ public class Bonuses : MonoBehaviour
             // kazda korutyna musi cos zwracac
             yield return null;
         }
+        
         Time.timeScale = 1f;
         Destroy(this.gameObject);
     }
