@@ -15,30 +15,42 @@ public class CarDurabilityManager : MonoBehaviour
     void Start()
     {
         //stworzenie gracza //playerCar potrzebne do tego by moc operowac na nowo stworzonym pojezdzie
-        playerCar = (GameObject) Instantiate(playerCarPrefab, spawnPoint.transform.position, Quaternion.identity);
+        playerCar = (GameObject)Instantiate(playerCarPrefab, spawnPoint.transform.position, Quaternion.identity);
     }
 
     void Update()
     {
-        if(playerCar.GetComponent<PlayerCarMovement>().durability <= 0)
+        if (playerCar != null)
         {
-            Destroy(playerCar);
-            lifes--;
-            if(lifes > 0)
+            if (playerCar.GetComponent<PlayerCarMovement>().durability <= 0)
             {
-                //tworzenie corutyny //https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html
-                //corutyny wywoluja sie i pracuja niezaleznie //nie mozemy zatrzymac czasu w funkcji update
-                StartCoroutine("SpawnaCar");
-            }
-            
-        }
-        //nie mozemy dzieki bonusom zwiekszyc wytrzymalosci wiekszej niz 100
-        else if (playerCar.GetComponent<PlayerCarMovement>().durability > playerCar.GetComponent<PlayerCarMovement>().maxDurability)
-        {
 
-            playerCar.GetComponent<PlayerCarMovement>().durability = playerCar.GetComponent<PlayerCarMovement>().maxDurability;
+                Destroy(playerCar);
+
+                lifes--;
+                if (lifes > 0)
+                {
+                    //tworzenie corutyny //https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html
+                    //corutyny wywoluja sie i pracuja niezaleznie //nie mozemy zatrzymac czasu w funkcji update
+                    StartCoroutine("SpawnaCar");
+                }
+
+            }
+            //nie mozemy dzieki bonusom zwiekszyc wytrzymalosci wiekszej niz 100
+
+
+            else if (playerCar != null)
+            {
+                if (playerCar.GetComponent<PlayerCarMovement>().durability > playerCar.GetComponent<PlayerCarMovement>().maxDurability)
+                {
+                    playerCar.GetComponent<PlayerCarMovement>().durability = playerCar.GetComponent<PlayerCarMovement>().maxDurability;
+                }
+            }
+
+            durabilityText.text = "WYTRZYMALOSC: " + playerCar.GetComponent<PlayerCarMovement>().durability + "/" + playerCar.GetComponent<PlayerCarMovement>().maxDurability;
+
         }
-        durabilityText.text = "WYTRZYMALOSC: " + playerCar.GetComponent<PlayerCarMovement>().durability + "/" + playerCar.GetComponent<PlayerCarMovement>().maxDurability;
+        
     }
 
     //Dzieki IEnumeratorowi mozemy zatrzymac czas na 3 sekundy, tylko tutaj ta funkcja dziala
@@ -50,6 +62,7 @@ public class CarDurabilityManager : MonoBehaviour
         playerCar.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
         playerCar.GetComponent<BoxCollider2D>().isTrigger = true;
         playerCar.tag = "Untouchable";
+
 
         //funkcja czeka 3 sekundy
         yield return new WaitForSeconds(3);

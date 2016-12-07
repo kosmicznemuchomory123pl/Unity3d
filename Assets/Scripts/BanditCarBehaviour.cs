@@ -11,6 +11,8 @@ public class BanditCarBehaviour : MonoBehaviour
     public int banditCarHorizontalSpeed;
     //odstep czasu w jakim samochod bandytow wypuszcza bombe
     public float bombDelay;
+    [HideInInspector]
+    public int pointsPerCar;
 
     //opoznienie do odejmowania i odliczania
     private float Delay;
@@ -45,6 +47,7 @@ public class BanditCarBehaviour : MonoBehaviour
                 this.gameObject.transform.Translate(new Vector3(0, 1, 0) * banditCarVerticalSpeed * Time.deltaTime);
                 if(gameObject.transform.position.y > 6.5f)
                 {
+                    PointsManager.points += pointsPerCar;
                     Destroy(this.gameObject);
                 }
                     

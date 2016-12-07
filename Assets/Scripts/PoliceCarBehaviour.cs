@@ -17,6 +17,9 @@ public class PoliceCarBehaviour : MonoBehaviour
     public bool isLeft;
     public float policeCarVerticalSpeed;
     public int bulletsInSeries;
+    public GameObject explosion;
+    [HideInInspector]
+    public int pointsPerCar;
 
     private float lightShowDelay;
     private float shootDelay;
@@ -84,6 +87,16 @@ public class PoliceCarBehaviour : MonoBehaviour
     {
         if(obj.gameObject.tag == "Barrier")
         {
+            if (isLeft == true)
+            {
+                WaveManager.isLeft = false;
+            }
+            else if (isLeft == false)
+            {
+                WaveManager.isRight = false;
+            }
+            PointsManager.points += pointsPerCar;
+            Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

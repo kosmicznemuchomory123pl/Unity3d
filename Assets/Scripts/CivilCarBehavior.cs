@@ -5,8 +5,11 @@ public class CivilCarBehavior : MonoBehaviour
 {
 
     public float crashDamage = 20f;
+    public GameObject explosion;
     public float civilCarSpeed = 5f;
     public int direction = -1;
+    [HideInInspector]
+    public int pointsPerCar;
 
     private Vector3 civilCarPosition;
 
@@ -29,14 +32,23 @@ public class CivilCarBehavior : MonoBehaviour
     {
         if (obj.gameObject.tag == "Player")
         {
+            PointsManager.points -= pointsPerCar;
             //pobiera komponent zycie z PlayerCarMovement i odejmuje go
             obj.gameObject.GetComponent<PlayerCarMovement>().durability -= crashDamage;
+            Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
 
             //Debug.Log("Gracz w nas wjechał");
             Destroy(gameObject);
         }
+        else if (obj.gameObject.tag =="Shield")
+        {
+            PointsManager.points += pointsPerCar;
+            Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
         else if (obj.gameObject.tag == "EndOfTheRoad")
         {
+            PointsManager.points += pointsPerCar;
             Destroy(this.gameObject);
         }
     }
