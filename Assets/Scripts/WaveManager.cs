@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class WaveManager : MonoBehaviour
@@ -56,6 +57,19 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            PointsManager.points = 0;
+            SceneManager.LoadScene(0);       
+        }
+        //ta funkcja miala konczyc gre ale cos nie trybi do konca
+        if (GetComponent<CarDurabilityManager>().lifes <= 0 || (spawnedPoliceCar == null && policeCarAmount <= 0))
+        {
+            StartCoroutine("EndGame");
+        }
+
+        
+
         spawnDelay -= Time.deltaTime;
         if (spawnDelay <= 0 && civilCarsAmount > 0)
         {
@@ -78,6 +92,14 @@ public class WaveManager : MonoBehaviour
         {
             spawnPoliceCar();
         }
+    }
+
+    IEnumerator EndGame()
+    {
+        new WaitForSeconds(5);
+        PointsManager.points = 0;
+        SceneManager.LoadScene(0);
+        yield return null;
     }
 
     void spawnPoliceCar()

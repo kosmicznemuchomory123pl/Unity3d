@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
     {
         if (obj.gameObject.tag == "Player")
         {
+            
             obj.gameObject.GetComponent<PlayerCarMovement>().durability -= bulletDamage;
             Destroy(this.gameObject);
         }
