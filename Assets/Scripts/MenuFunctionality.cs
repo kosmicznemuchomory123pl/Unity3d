@@ -7,7 +7,7 @@ public class MenuFunctionality : MonoBehaviour
 
 
 
-
+   
     
 
     public void StartButton()
@@ -26,5 +26,6 @@ public class MenuFunctionality : MonoBehaviour
     {
         Application.Quit();
     }
+
 
 }

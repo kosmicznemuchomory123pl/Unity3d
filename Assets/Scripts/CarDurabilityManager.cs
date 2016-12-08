@@ -8,6 +8,7 @@ public class CarDurabilityManager : MonoBehaviour
     //ustawiamy tam miejsce spawnowania pojazdu
     public GameObject spawnPoint;
     public TextMesh durabilityText;
+    public GameObject[] hearts;
     public int lifes;
     //
     private GameObject playerCar;
@@ -28,6 +29,8 @@ public class CarDurabilityManager : MonoBehaviour
                 Destroy(playerCar);
 
                 lifes--;
+                Destroy(hearts[lifes]);
+
                 if (lifes > 0)
                 {
                     //tworzenie corutyny //https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerCarMovement : MonoBehaviour {
 
+    
     //predkosc poruszania sie na boki
     public float carHorizontalSpeed = 3f;
     //pozycja naszego samochodu
@@ -18,6 +19,7 @@ public class PlayerCarMovement : MonoBehaviour {
         carPosition = this.gameObject.transform.position;
 
         durability = maxDurability;
+
     }
 
     void Update()
@@ -28,6 +30,7 @@ public class PlayerCarMovement : MonoBehaviour {
         carPosition.x = Mathf.Clamp(carPosition.x, -2.41f, 2.41f);
         //do naszego objektu gry, do jego pozycji przypisujemy pozycje carPosition
         this.gameObject.transform.position = carPosition;
+        
     }
 
 }

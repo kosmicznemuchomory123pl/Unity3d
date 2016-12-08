@@ -60,7 +60,7 @@ public class WaveManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             PointsManager.points = 0;
-            SceneManager.LoadScene(0);       
+            SceneManager.LoadScene(2);       
         }
         //ta funkcja miala konczyc gre ale cos nie trybi do konca
         if (GetComponent<CarDurabilityManager>().lifes <= 0 || (spawnedPoliceCar == null && policeCarAmount <= 0))
@@ -96,9 +96,8 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator EndGame()
     {
-        new WaitForSeconds(5);
-        PointsManager.points = 0;
-        SceneManager.LoadScene(0);
+        new WaitForSeconds(10);
+        SceneManager.LoadScene(2);
         yield return null;
     }
 
